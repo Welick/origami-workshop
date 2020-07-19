@@ -1,15 +1,18 @@
 import React from 'react'
 import Link from '../link'
 import styles from './index.module.css'
+import getNavigation from '../../utils/navigation'
 
 const Footer = () => {
+    const links = getNavigation()
     return (
         <footer className={styles.footer}>
             <div>
-                <Link href="#" title="Going to 1" type={"footer"} />
-                <Link href="#" title="Going to 2" type={"footer"} />
-                <Link href="#" title="Going to 3" type={"footer"} />
-                <Link href="#" title="Going to 4" type={"footer"} />
+                {links.map(nav => {
+                    return (
+                        <Link href={nav.link} title={nav.title} type={"footer"} />
+                    )
+                })}
             </div>
             <p className={styles["footer-p"]}>Private site 2020</p>
         </footer>
