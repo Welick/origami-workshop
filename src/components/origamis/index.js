@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import styles from './index.module.css'
 import Origami from '../origami'
 
@@ -12,7 +12,8 @@ class Origamis extends React.Component {
     }
 
     getOrigamis = async () => {
-        const promise = await fetch('http://localhost:9999/api/origami')
+        const { length } = this.props
+        const promise = await fetch(`http://localhost:9999/api/origami?length=${length}`)
         const origamis = await promise.json()
 
         this.setState({
@@ -34,14 +35,9 @@ class Origamis extends React.Component {
     }
 
     render() {
-        const origamis = this.state.origamis;
-
         return (
-            <div className={styles.container}>
-                <h1 className={styles.title}>Origamis</h1>
-                <div className={styles["origamis-wrapper"]}>
-                    {this.renderOrigamis()}
-                </div>
+            <div className={styles["origamis-wrapper"]}>
+                {this.renderOrigamis()}
             </div>
         )
     }
